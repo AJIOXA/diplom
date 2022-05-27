@@ -1,16 +1,19 @@
 version: "3.9"
 services:
   postgres:
-    image: postgr-db:v1.0
+    image: postgres:14
     environment:
       POSTGRES_DB: "chain"
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "123"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    volumes:
+      - ./postgr:/var/lib/postgresql/data
     ports:
       - "5432:5432"
   app:
-    image: app:v1.0
+    build: ./DB-Web-App-with-PostgreSQL-Server-and-Python
     depends_on:
-      - db
+      - postgres
     ports:
       - "5000:5000"

@@ -12,12 +12,12 @@ WORKDIR /home/project
 COPY . .
 
 
-#export FLASK_APP=app.py
-#RUN flask run
+RUN export FLASK_APP=app.py
+RUN flask run
 #RUN chmod +x ConnectInfo.sh
 #RUN ./ConnectInfo.sh
 
 
 CMD ["/usr/sbin/httpd", "-DFOREGROUND"]
 
-EXPOSE 80
+EXPOSE 5000
